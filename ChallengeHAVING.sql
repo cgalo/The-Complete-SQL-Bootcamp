@@ -4,6 +4,10 @@ The requirements are that the customer has at least a total of 40 transaction pa
 What customer are eligble for the credit card?
 */
 
+/*
+Programs:Postegre SQL, pgAdmin 4
+*/
+
 SELECT customer_id, COUNT(amount)
 FROM payment
 GROUP BY customer_id
