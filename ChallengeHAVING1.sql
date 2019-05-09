@@ -5,7 +5,7 @@ What customer are eligble for the credit card?
 */
 
 /*
-Programs:Postegre SQL, pgAdmin 4
+Program:Postegre SQL, pgAdmin 4
 */
 
 SELECT customer_id, COUNT(amount)
