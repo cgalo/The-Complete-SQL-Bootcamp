@@ -6,7 +6,7 @@ Database: dvdrental.tar
 
 /*
 Problems:
-1. Return the customer IDs of customer who have spent at least $110 with the staff member who has an ID of 2
+1. Return the customer IDs' of customers who have spent at least $110 with the staff member, who has an ID of 2.
 --Answer: should be customer 187 and 148
 
 2. How many films begin with the letter J?
