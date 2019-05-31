@@ -75,4 +75,6 @@ FROM cd.facilities
 WHERE guestcost > 10;
 
 /* Problem #12 Solution */
-
+SELECT DISTINCT (name), cd.bookings.slots
+FROM cd.facilities
+INNER JOIN cd.bookings ON facilities.facid = cd.bookings.facid;
