@@ -70,3 +70,9 @@ ORDER BY joindate DESC
 LIMIT 1;
 
 /* Problem #10 Solution */
+SELECT COUNT(name) AS totFacilities
+FROM cd.facilities
+WHERE guestcost > 10;
+
+/* Problem #12 Solution */
+
