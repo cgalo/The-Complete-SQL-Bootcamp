@@ -75,7 +75,8 @@ FROM cd.facilities
 WHERE guestcost > 10;
 
 /* Problem #12 Solution */
-SELECT DISTINCT (name), cd.bookings.slots
+SELECT cd.facilities.facid, name, SUM (cd.bookings.slots) AS totalSlots
 FROM cd.facilities
 INNER JOIN cd.bookings ON facilities.facid = cd.bookings.facid
-ORDER BY cd.bookings.slots;
+GROUP BY (cd.facilities.facid,name)
+ORDER BY SUM(cd.bookings.slots)
