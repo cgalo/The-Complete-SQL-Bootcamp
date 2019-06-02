@@ -80,3 +80,11 @@ FROM cd.facilities
 INNER JOIN cd.bookings ON facilities.facid = cd.bookings.facid
 GROUP BY (cd.facilities.facid,name)
 ORDER BY SUM(cd.bookings.slots)
+
+/*Problem #13 Solution*/
+SELECT facilities.facid, SUM (bookings.slots)
+FROM cd.facilities
+INNER JOIN cd.bookings ON cd.facilities.facid = cd.bookings.facid
+GROUP BY facilities.facid
+HAVING SUM(bookings.slots) > 1000
+ORDER BY facilities.facid DESC;
