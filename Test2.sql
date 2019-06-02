@@ -88,3 +88,8 @@ INNER JOIN cd.bookings ON cd.facilities.facid = cd.bookings.facid
 GROUP BY facilities.facid
 HAVING SUM(bookings.slots) > 1000
 ORDER BY facilities.facid DESC;
+
+/*Problem #14 Solution*/
+SELECT bookings.starttime AS time, name
+FROM cd.facilities, cd.bookings
+WHERE bookings.starttime <= '2012-09-21' AND name LIKE 'Tennis%'
