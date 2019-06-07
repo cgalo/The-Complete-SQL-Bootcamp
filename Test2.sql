@@ -44,18 +44,18 @@ WHERE membercost < (0.02 * monthlymaintenance);
 /* Problem #5 Solution */
 SELECT name AS facilities
 FROM cd.facilities
-WHERE name LIKE 'Tennis%'
+WHERE name LIKE '%Tennis%'
 
 /* Problem #6 Solution */
 SELECT *
 FROM cd.facilities
-WHERE facid < 6 AND facid > 0
+WHERE facid < 6 AND facid > 0 /*WHERE facid IN (1,5)*/
 ORDER BY facid;
 
 /* Problem #7 Solution */
 SELECT memid, surname, firstname, joindate 
 FROM cd.members
-WHERE joindate > '2012-09-01'
+WHERE joindate >= '2012-09-01'
 
 /* Problem #8 Solution */
 SELECT DISTINCT (surname)
@@ -64,10 +64,11 @@ ORDER BY surname
 LIMIT 10;
 
 /* Problem #9 Solution */
-SELECT joindate
+SELECT joindate /*SELECT MAX(joindate)*/
 FROM cd.members
 ORDER BY joindate DESC
-LIMIT 1;
+LIMIT 1; 
+
 
 /* Problem #10 Solution */
 SELECT COUNT(name) AS totFacilities
@@ -75,26 +76,29 @@ FROM cd.facilities
 WHERE guestcost > 10;
 
 /* Problem #12 Solution */
-SELECT cd.facilities.facid, name, SUM (cd.bookings.slots) AS totalSlots
-FROM cd.facilities
-INNER JOIN cd.bookings ON facilities.facid = cd.bookings.facid
-GROUP BY (cd.facilities.facid,name)
-ORDER BY SUM(cd.bookings.slots)
+SELECT facid, SUM (slots) AS totalSlots
+FROM cd.bookings
+WHERE starttime > '2012-09-01' AND starttime < '2012-09-30'
+GROUP BY facid 
+ORDER BY facid;
 
 /*Problem #13 Solution*/
-SELECT facilities.facid, SUM (bookings.slots)
-FROM cd.facilities
-INNER JOIN cd.bookings ON cd.facilities.facid = cd.bookings.facid
-GROUP BY facilities.facid
-HAVING SUM(bookings.slots) > 1000
-ORDER BY facilities.facid DESC;
+SELECT facid, SUM (slots) AS "Total Slots"
+FROM cd.bookings
+GROUP BY facid
+HAVING SUM (slots) > 1000
+ORDER BY facid
 
 /*Problem #14 Solution*/
-SELECT bookings.starttime AS time, name
-FROM cd.facilities, cd.bookings
-WHERE bookings.starttime <= '2012-09-21' AND name LIKE 'Tennis%'
+SELECT bks.starttime AS start, facs.name AS name
+FROM cd.facilities facs
+INNER JOIN cd.bookings bks ON bks.facid = facs.facid
+WHERE name LIKE '%Tennis%' AND starttime >= '2012-09-21' AND starttime <= '2012-09-22'
+ORDER BY start;
 
 /*Problem #15 Solution*/
-SELECT starttime, surname, firstname
-FROM cd.bookings, cd.members
-WHERE surname LIKE 'Farrell' AND firstname LIKE 'David';
+SELECT starttime
+FROM cd.bookings bks
+INNER JOIN cd.members mems ON mems.memid = bks.memid
+WHERE mems.surname = 'Farrell' AND mems.firstname = 'David'
+ORDER BY starttime;
