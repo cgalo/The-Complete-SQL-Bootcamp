@@ -93,3 +93,8 @@ ORDER BY facilities.facid DESC;
 SELECT bookings.starttime AS time, name
 FROM cd.facilities, cd.bookings
 WHERE bookings.starttime <= '2012-09-21' AND name LIKE 'Tennis%'
+
+/*Problem #15 Solution*/
+SELECT starttime, surname, firstname
+FROM cd.bookings, cd.members
+WHERE surname LIKE 'Farrell' AND firstname LIKE 'David';
