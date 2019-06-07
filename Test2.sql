@@ -1,7 +1,7 @@
 /* 
 Author:   CGalo
 Program:  PostgreSQL, pgAdmin 4
-Database: dvdrental.tar
+Database: exercises.tar
 */
 
 /*
